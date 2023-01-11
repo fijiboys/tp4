@@ -12,7 +12,7 @@ from math import pi
 
 class Human:
     def __init__(self):
-        self.message = "J'aime les cochons."
+        self.message = "i droped my five dollars"
 
 
 class StringFoo:
