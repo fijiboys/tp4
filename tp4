@@ -1,0 +1,92 @@
+"""
+Henry Harrison
+groupe 406
+date de creation: 2023/01/11
+Introduction à la programation
+"""
+
+import random
+from dataclasses import dataclass
+from math import pi
+
+
+class Human:
+    def __init__(self):
+        self.message = "J'aime les cochons."
+
+
+class StringFoo:
+    def __init__(self, message):
+        self.message = message
+
+    def set_string(self, msg):
+        self.message = msg
+
+    def print_string(self):
+        print(f"`{self.message.upper()}")
+
+
+class Rectangle:
+    def __init__(self, largeur, longueur):
+        self.largeur = largeur
+        self.longueur = longueur
+
+    def calcul_aire(self):
+        return self.longueur * self.largeur
+
+    def afficher_info(self):
+        print(f"{self.longueur}{self.largeur}{self.calcul_aire()}")
+
+
+print("rectangle air :",Rectangle(2, 3).calcul_aire())
+
+
+class Cercle:
+    def __init__(self, rayon):
+        self.rayon = rayon
+
+    def calcul_aire(self):
+        return self.rayon ** 2 * pi
+
+    def calcul_circonference(self):
+        return self.rayon * 2 * pi
+
+
+print("cercle aire :",Cercle(10).calcul_aire())
+print("cercle circonference :",Cercle(10).calcul_circonference())
+print(" ")
+
+
+@dataclass
+class Personnage:
+    force: int = random.randint(1, 20)
+    dexterite: int = random.randint(1, 20)
+    constitution: int = random.randint(1, 20)
+    intelligence: int = random.randint(1, 20)
+    sagesse: int = random.randint(1, 20)
+    charisme: int = random.randint(1, 20)
+
+
+class Hero:
+    def __init__(self, nom):
+        self.nombre_de_vie = random.randint(1, 10) + random.randint(1, 10)
+        self.force_defense = random.randint(1, 6)
+        self.force_attack = random.randint(1, 6)
+        self.nom = nom
+        self.caracteristique = Personnage()
+
+    def dommage(self, dommage):
+        self.nombre_de_vie -= dommage - self.force_defense
+
+    def attack(self):
+        return random.randint(1, 6) + self.force_attack
+
+    def est_vivant(self):
+        return self.nombre_de_vie > 0
+
+
+bob_the_builder = Hero("bob_the_builder")
+print(f"{bob_the_builder.nom} a {bob_the_builder.nombre_de_vie} point(s) de vie")
+print(f"{bob_the_builder.nom} a {bob_the_builder.force_attack} point(s) de force")
+print(f"{bob_the_builder.nom} est  vivant: {bob_the_builder.est_vivant()} ")
+print(bob_the_builder.__dict__)
